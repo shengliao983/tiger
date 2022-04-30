@@ -1,15 +1,32 @@
-plugins {
-    id 'java'
-}
-
-group 'org.example'
+group 'org.example.web'
 version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
 
 repositories {
     mavenCentral()
 }
 
+
+// 1 - apply application
+apply plugin: 'application'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+mainClassName = 'org.example.web.Application'
+
 dependencies {
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.0.53'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.0.53'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.53'
+     
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-server', version: '2.10.1'
+    implementation group: 'org.glassfish.jersey.core', name: 'jersey-common', version: '2.10.1'
+    implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: '2.10.1'
+    implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-jackson', version: '2.10.1'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
